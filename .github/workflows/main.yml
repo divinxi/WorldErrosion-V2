@@ -16,9 +16,9 @@ jobs:
           distribution: 'temurin'
       - name: Install Gradle
         run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
-          unzip -q gradle-8.7-bin.zip
-          echo "$PWD/gradle-8.7/bin" >> $GITHUB_PATH
+          wget -q https://services.gradle.org/distributions/gradle-8.10-bin.zip
+          unzip -q gradle-8.10-bin.zip
+          echo "$PWD/gradle-8.10/bin" >> $GITHUB_PATH
       - name: Build mod
         run: gradle build
         working-directory: ./world-erosion-clean
