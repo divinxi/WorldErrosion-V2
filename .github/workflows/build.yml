@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: world-erosion-clean
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -20,5 +23,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: world-erosion-mod
-          path: build/libs/*.jar
+          path: world-erosion-clean/build/libs/*.jar
           if-no-files-found: error
