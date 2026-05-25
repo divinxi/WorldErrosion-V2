@@ -1,0 +1,30 @@
+name: Build World Erosion Mod
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Install Gradle
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
+          unzip -q gradle-8.7-bin.zip
+          echo "$PWD/gradle-8.7/bin" >> $GITHUB_PATH
+      - name: Build mod
+        run: gradle build
+        working-directory: ./world-erosion-clean
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-erosion-mod
+          path: world-erosion-clean/build/libs/world-erosion-*.jar
+          if-no-files-found: error
