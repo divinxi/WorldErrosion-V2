@@ -23,5 +23,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: world-erosion-mod
-          path: world-erosion-clean/build/libs/*.jar
+          path: |
+            world-erosion-clean/build/libs/*.jar
+            !world-erosion-clean/build/libs/*-sources.jar
           if-no-files-found: error
